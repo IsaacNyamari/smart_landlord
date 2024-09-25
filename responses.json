@@ -1,0 +1,70 @@
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Smart-Landlord?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Smart-Landlord is a property management system for landlords, Agents and property managers in Kenya. Smart-Landlord helps landlords and property managers save time and money by leveraging technology."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you offer a free trial?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we offer a 1 month free trial. During this trial you will only have to pay for  SMS sent to tenants. The Bulk SMS cost is 1 Kshs per SMS."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does the system have any downtimes?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The system has no downtimes. We have backups for every part of our system so that there will be no interruption in service."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I have to pay for any upgrades done in the system?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "You do not have to pay for any upgrades made to the system. We continuously improve the software at no cost to you."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my data safe?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Your data is safe. All data transmitted is SSL encrypted and all data is password protected so that only you and your authorized users have access to your data. We also hold backups on your data so that you never loose your data."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you provide support?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we provide support through email (support@Smart-Landlord.com) and phone (+254 717 512 483). You may contact us anytime between 8am-7pm (GMT+3, Kenyan time). Our team also offers training on how to use the system."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I export my data?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes you can export the data such as invoices, payments and tenant records from our system into a spreadsheet."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I communicate with tenants through the system?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes you can you can communicate with tenants through the system to send announcements or send invoices and receipts."
+                }
+            }
+        ]
+    }

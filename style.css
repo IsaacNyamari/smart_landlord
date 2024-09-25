@@ -1,0 +1,92 @@
+:root {
+    font-size: 20px !important;
+    font-weight: 700;
+}
+
+.session-body {
+    background-image: url('../images/apartment.jpg');
+    background-size: 1500px;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+}
+
+.form-div {
+    background-image: url('../images/home1.jpg');
+    background-size: cover;
+}
+
+.form-container {
+    /* background-color: #ffffff; */
+    backdrop-filter: blur(25px) !important;
+}
+
+label {
+    font-weight: bolder;
+    font-size: 20px;
+    color: #fff;
+}
+
+.reg-status {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: fit-content;
+    animation: slideInLeft 0.7s forwards;
+    padding: 3px;
+}
+
+.fadeOut {
+    transition: ease-out 1s;
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(350px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0.8;
+    }
+
+    40% {
+        opacity: 0.6;
+    }
+
+    60% {
+        opacity: 0.4;
+    }
+
+    80% {
+        opacity: 0.2;
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.sign-btn:hover .sign-btn>i {
+    animation: animateBtn 2s forwards !important;
+}
+
+@keyframes animateBtn {
+    0% {
+        transform: translateX(0) !important;
+    }
+
+    100% {
+        transform: translateX(-15px) !important;
+    }
+}
