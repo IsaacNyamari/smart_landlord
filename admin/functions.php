@@ -1,5 +1,5 @@
 <?php
-class Db
+class Database
 {
     protected $hostname = "localhost";
     protected $username = "root";
@@ -15,7 +15,7 @@ class Db
         }
     }
 }
-class Log extends Db
+class Log extends Database
 {
     public $connection;
 
@@ -24,7 +24,7 @@ class Log extends Db
         $this->connection = $this->connect();
     }
 }
-class Caretakers extends Db
+class Caretakers extends Database
 {
     public $connection;
 
@@ -42,7 +42,7 @@ class Caretakers extends Db
         $this->connection = $this->connect();
     }
 }
-class Apartments extends Db
+class Apartments extends Database
 {
     public $connection;
     public function generateId($length = 50)
@@ -71,7 +71,7 @@ class Apartments extends Db
         $this->connection = $this->connect();
     }
 }
-class Tenants extends Db
+class Tenants extends Database
 {
     public $connection;
 
@@ -92,7 +92,7 @@ class Tenants extends Db
         $this->connection = $this->connect();
     }
 }
-class Activation extends Db
+class Activation extends Database
 {
     public $connection;
 
