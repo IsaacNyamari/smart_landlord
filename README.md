@@ -114,7 +114,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 📧 Contact
 
-Have questions? Reach out to us at: <support@smartlandlord.com>
+Have questions? Reach out to us at: <jablessions76@gmail.com>
 
 ---
 
