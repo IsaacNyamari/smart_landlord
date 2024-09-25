@@ -226,7 +226,28 @@ class Owners extends Database
             echo 'No user found with that email.';
         }
     }
-
+    public function activateOwner($email,$code)
+    {
+        $this->connection = $this->connect();
+        $get_activation = "SELECT * FROM `activation` WHERE email = ?";
+        $stmt = mysqli_prepare($this->connection, $get_activation);
+        mysqli_stmt_bind_param($stmt, 's', $email);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        if (mysqli_num_rows($result) > 0) {
+            $user = mysqli_fetch_assoc($result);
+            $user_code = $user['code'];
+            $status = 1;
+            if ($code === $user_code) {
+                $activate = "UPDATE `owners` SET `status` = ? WHERE email = ?";
+                $stmt = mysqli_prepare($this->connection, $activate);
+                mysqli_stmt_bind_param($stmt, 'ss', $status, $email);
+                if (mysqli_stmt_execute($stmt)) {
+                    header("location:admin/");
+                }
+            }
+        }
+    }
     public function getActivationStatus()
     {
         $this->connection = $this->connect();
