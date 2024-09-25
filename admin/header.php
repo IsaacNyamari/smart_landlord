@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Users / Profile - NiceAdmin Bootstrap Template</title>
+    <title><?php echo $_SESSION['fname'] ?> - Dashboard</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -29,13 +30,6 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 20 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -144,12 +138,12 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">N. Isaac</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php  echo $_SESSION['lname'][0]." ".$_SESSION['fname']  ?></span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Isaac Nyamari</h6>
+                            <h6><?php  echo $_SESSION['fname']." ".$_SESSION['lname']  ?></h6>
                             <span>LandLord</span>
                         </li>
                         <li>
