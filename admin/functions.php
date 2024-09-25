@@ -15,15 +15,6 @@ class Database
         }
     }
 }
-class Log extends Database
-{
-    public $connection;
-
-    public function __construct()
-    {
-        $this->connection = $this->connect();
-    }
-}
 class Caretakers extends Database
 {
     public $connection;
@@ -113,6 +104,33 @@ class Activation extends Database
         $this->connection = $this->connect();
     }
 }
-$getAparts = new Apartments;
-$get_apartments = $getAparts->getAparts();
-var_dump(($get_apartments));
+class Owners extends Database
+{
+    public $connection;
+
+    public function getOwners()
+    {
+        $this->connection = $this->connect();
+    }
+    public function getActivationStatus()
+    {
+        $this->connection = $this->connect();
+    }
+    public function deleteOwners()
+    {
+        $this->connection = $this->connect();
+    }
+    public function updateOwners()
+    {
+        $this->connection = $this->connect();
+    }
+    public function getSubscription($email)
+    {
+        $this->connection = $this->connect();
+    }
+}
+$getOwners = new Owners;
+$getApartments = new Apartments;
+$getTenants = new Tenants;
+$getActivation = new Activation;
+$getCaretakers = new Caretakers;
