@@ -8,7 +8,7 @@ include("protect.php");
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title><?php echo $_SESSION['fname']?> - Dashboard</title>
+  <title><?php echo $_SESSION['fname'] ?> - Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -80,45 +80,6 @@ include("protect.php");
             </li>
 
             <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
               <i class="bi bi-info-circle text-primary"></i>
               <div>
                 <h4>Dicta reprehenderit</h4>
@@ -181,21 +142,6 @@ include("protect.php");
             <li>
               <hr class="dropdown-divider">
             </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
             <li class="dropdown-footer">
               <a href="#">Show all messages</a>
             </li>
@@ -717,7 +663,7 @@ include("protect.php");
       &copy; Copyright <strong><span>Smart - Landlord</span></strong>. All Rights Reserved
     </div>
     <div class="credits">
-     Designed by <a href="#">Papaa Izoo</a>
+      Designed by <a href="#">Papaa Izoo</a>
     </div>
   </footer><!-- End Footer -->
 
