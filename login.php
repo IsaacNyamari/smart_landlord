@@ -8,17 +8,21 @@ if (isset($_POST['login'])) {
     mysqli_stmt_bind_param($stmt, 's', $email);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-    $user_data = mysqli_fetch_assoc($result);
-    if (password_verify($password, $user_data['password'])) {
-        session_start();
-        $_SESSION["fname"] = $user_data['fname'];
-        $_SESSION["lname"] = $user_data['lname'];
-        $_SESSION["email"] = $user_data['email'];
-        $_SESSION["owner"] = true;
-        if ($user_data['status'] == 0) {
-            header("Location:activate.php");
-        } else {
-            header("location:admin/");
+    if (mysqli_num_rows($result) > 1) {
+        $user_data = mysqli_fetch_assoc($result);
+        if (password_verify($password, $user_data['password'])) {
+            session_start();
+            $_SESSION["fname"] = $user_data['fname'];
+            $_SESSION["lname"] = $user_data['lname'];
+            $_SESSION["email"] = $user_data['email'];
+            $_SESSION["owner"] = true;
+            if ($user_data['status'] == 0) {
+                header("Location:activate.php");
+            } else {
+                header("location:admin/");
+            }
         }
+    } else {
+        header("location:session?status=error");
     }
 }

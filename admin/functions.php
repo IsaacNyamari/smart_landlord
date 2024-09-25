@@ -45,13 +45,18 @@ class Caretakers extends Db
 class Apartments extends Db
 {
     public $connection;
-
+    public function generateId($length = 50)
+    {
+        return substr(md5(uniqid(mt_rand(), true)), 0, $length);
+    }
     public function getAparts()
     {
         $this->connection = $this->connect();
+        $id = $this->generateId();
+        return $id;
         $query = "SELECT * FROM apartments";
         $result = mysqli_query($this->connect(), $query);
-        return $result;
+        // return $result;
     }
     public function addApart()
     {
@@ -83,6 +88,27 @@ class Tenants extends Db
         $this->connection = $this->connect();
     }
     public function updateTenant()
+    {
+        $this->connection = $this->connect();
+    }
+}
+class Activation extends Db
+{
+    public $connection;
+
+    public function getActivation()
+    {
+        $this->connection = $this->connect();
+    }
+    public function addActivation()
+    {
+        $this->connection = $this->connect();
+    }
+    public function deleteActivation()
+    {
+        $this->connection = $this->connect();
+    }
+    public function updateActivation()
     {
         $this->connection = $this->connect();
     }
