@@ -58,7 +58,7 @@ The **Smart Landlord Management System** is a comprehensive web application desi
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/<username>/smart-landlord-management-system.git
+   git clone https://github.com/IsaacNyamari/smart-landlord-management-system.git
    ```
 
 2. **Move to the project directory**:
