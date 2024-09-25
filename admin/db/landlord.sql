@@ -33,12 +33,6 @@ CREATE TABLE `activation` (
   `code` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `activation`
---
-
-INSERT INTO `activation` (`code_id`, `email`, `code`) VALUES
-(4, 'jablessions76@gmail.com', 'C27C96');
 
 -- --------------------------------------------------------
 
@@ -85,13 +79,7 @@ CREATE TABLE `owners` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `owners`
---
-
-INSERT INTO `owners` (`owner_id`, `fname`, `lname`, `email`, `password`, `status`) VALUES
-('f9698a216fd0f18fa1c97c24d6673e4d', 'Isaac', 'Nyamari', 'jablessions76@gmail.com', '$2y$10$WvJD9FTkx2iooVAYdn7T2.EGieDsBGma0TZXU4foeg7a/BawjaMlC', 1);
-
--- --------------------------------------------------------
+----------------------------------------------------------
 
 --
 -- Table structure for table `tenants`
@@ -147,7 +135,7 @@ ALTER TABLE `tenants`
 -- AUTO_INCREMENT for table `activation`
 --
 ALTER TABLE `activation`
-  MODIFY `code_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `code_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `apartments`
