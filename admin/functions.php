@@ -107,11 +107,77 @@ class Owners extends Database
 {
     public $connection;
 
+    public function getOwner($email)
+    {
+        // Ensure connection is established
+        $this->connection = $this->connect();
+
+        // Prepare the SQL query
+        $get_owner = "SELECT * FROM `owners` WHERE email = ?";
+        $stmt = mysqli_prepare($this->connection, $get_owner);
+
+        // Check if preparation was successful
+        if ($stmt === false) {
+            die('Error preparing SQL: ' . mysqli_error($this->connection)); // Debugging purpose
+        }
+
+        // Bind the email parameter to the prepared statement
+        mysqli_stmt_bind_param($stmt, 's', $email);
+
+        // Execute the statement
+        mysqli_stmt_execute($stmt);
+
+        // Get the result
+        $result = mysqli_stmt_get_result($stmt);
+
+        // Check if a result was returned
+        if ($result === false) {
+            die('Error executing SQL: ' . mysqli_error($this->connection)); // Debugging purpose
+        }
+
+        // Now check the number of rows
+        if (mysqli_num_rows($result) > 0) {
+            $user_data = mysqli_fetch_assoc($result);
+            return $user_data;
+        } else {
+            // Handle case when no user is found
+            echo 'No user found with that email.';
+        }
+    }
     public function getOwners()
     {
+        // Ensure connection is established
         $this->connection = $this->connect();
+
+        // Prepare the SQL query
+        $get_owner = "SELECT * FROM `owners`";
+        $stmt = mysqli_prepare($this->connection, $get_owner);
+
+        // Check if preparation was successful
+        if ($stmt === false) {
+            die('Error preparing SQL: ' . mysqli_error($this->connection)); // Debugging purpose
+        }
+
+        mysqli_stmt_execute($stmt);
+
+        // Get the result
+        $result = mysqli_stmt_get_result($stmt);
+
+        // Check if a result was returned
+        if ($result === false) {
+            die('Error executing SQL: ' . mysqli_error($this->connection)); // Debugging purpose
+        }
+
+        // Now check the number of rows
+        if (mysqli_num_rows($result) > 0) {
+            $user_data = mysqli_fetch_assoc($result);
+            return $user_data;
+        } else {
+            // Handle case when no user is found
+            echo 'No user found with that email.';
+        }
     }
-    public function getOwner($email, $password)
+    public function Login($email, $password)
     {
         // Ensure connection is established
         $this->connection = $this->connect();
