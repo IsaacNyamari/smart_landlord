@@ -1,7 +1,3 @@
-Yes! You can make the `README.md` look visually more appealing by incorporating some HTML elements and markdown styling. Here’s an enhanced version of your README that blends Markdown and HTML for a prettier look:
-
----
-
 # <div align="center"> Smart Landlord Management System </div>
 
 <p align="center">
