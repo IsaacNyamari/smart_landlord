@@ -5,7 +5,7 @@ Yes! You can make the `README.md` look visually more appealing by incorporating 
 # <div align="center"> Smart Landlord Management System </div>
 
 <p align="center">
-  <img src="![https://via.placeholder.com/150](https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=600)" alt="Logo" width="150">
+  <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Logo" width="150">
 </p>
 
 <p align="center">
