@@ -112,6 +112,10 @@ class Owners extends Database
     {
         $this->connection = $this->connect();
     }
+    public function getOwner()
+    {
+        $this->connection = $this->connect();
+    }
     public function getActivationStatus()
     {
         $this->connection = $this->connect();
@@ -129,6 +133,7 @@ class Owners extends Database
         $this->connection = $this->connect();
     }
 }
+
 $getOwners = new Owners;
 $getApartments = new Apartments;
 $getTenants = new Tenants;
