@@ -32,7 +32,7 @@ The **Smart Landlord Management System** is a comprehensive web application desi
 <table>
   <tr>
     <td><b>Backend</b></td>
-    <td>PHP (Laravel or Plain PHP)</td>
+    <td>PHP ( Plain PHP)</td>
   </tr>
   <tr>
     <td><b>Frontend</b></td>
