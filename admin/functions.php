@@ -88,11 +88,11 @@ class Tenants extends Database
             $stmt = mysqli_prepare($this->connection, $sql);
             mysqli_stmt_bind_param($stmt, "ssss", $id, $id_number, $names, $apartment);
             if (mysqli_stmt_execute($stmt)) {
-                $status = "success";
+                $status = "Successfully added!";
                 return $status;
             } else {
                 if (mysqli_errno($this->connection) == 1062) {
-                    $status = "Id number already registered";
+                    $status = "Users exists with this id!";
                     return $status;
                 }
             }
@@ -115,8 +115,20 @@ class Tenants extends Database
             throw $err;
         }
     }
-    public function updateTenant()
+    public function updateTenant($id_number = null, $names = null, $apartment = null)
     {
+        try {
+            $this->connection = $this->connect();
+            $sql =  "UPDATE `tenants` SET `names` = ? `apartment`= ?  WHERE id_number = ?";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $names, $apartment, $id_number);
+            if (mysqli_stmt_execute($stmt)) {
+                $status = "success";
+                return $status;
+            }
+        } catch (\Error $err) {
+            throw $err;
+        }
         $this->connection = $this->connect();
     }
 }
@@ -309,5 +321,5 @@ $getApartments = new Apartments;
 $getTenants = new Tenants;
 $getActivation = new Activation;
 $getCaretakers = new Caretakers;
-echo $get_all_tenants = $getTenants->addTenant(35779255, "John Paul", 5);
+echo $get_all_tenants = $getTenants->addTenant(35679255, "Tom James", 1);
 // $get_all_tenants = $getTenants->addTenant();
