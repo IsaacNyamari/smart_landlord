@@ -46,11 +46,9 @@ class Apartments extends Database
     public function getAparts()
     {
         $this->connection = $this->connect();
-        $id = $this->generateId();
-        return $id;
         $query = "SELECT * FROM apartments";
         $result = mysqli_query($this->connect(), $query);
-        // return $result;
+        return $result;
     }
     public function addApart()
     {
@@ -129,7 +127,6 @@ class Tenants extends Database
         } catch (\Error $err) {
             throw $err;
         }
-        $this->connection = $this->connect();
     }
 }
 class Activation extends Database
@@ -298,21 +295,105 @@ class Owners extends Database
             }
         }
     }
-    public function getActivationStatus()
-    {
-        $this->connection = $this->connect();
-    }
     public function deleteOwners()
     {
-        $this->connection = $this->connect();
+        try {
+            $this->connection = $this->connect();
+            $sql =  "DELETE FROM `tenants` WHERE tenant_id = ?";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $id);
+            if (mysqli_stmt_execute($stmt)) {
+                $status = "success";
+                return $status;
+            }
+        } catch (\Error $err) {
+            throw $err;
+        }
     }
     public function updateOwners()
     {
-        $this->connection = $this->connect();
+        try {
+            $this->connection = $this->connect();
+            $sql =  "UPDATE `tenants` SET `names` = ? `apartment`= ?  WHERE id_number = ?";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "sss", $names, $apartment, $id_number);
+            if (mysqli_stmt_execute($stmt)) {
+                $status = "success";
+                return $status;
+            }
+        } catch (\Error $err) {
+            throw $err;
+        }
     }
-    public function getSubscription($email)
+    public function getSubscription($email = null)
     {
         $this->connection = $this->connect();
+        $query = "SELECT subscription FROM owners";
+        $result = mysqli_query($this->connection, $query);
+        return $result;
+    }
+    public function updateSubscription($email)
+    {
+        try {
+            $this->connection = $this->connect();
+            $sql =  "UPDATE `owners` SET `subscription` = ?  WHERE email = ?";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $email);
+            if (mysqli_stmt_execute($stmt)) {
+                $status = "success";
+                return $status;
+            }
+        } catch (\Error $err) {
+            throw $err;
+        }
+    }
+    public function getTrialPeriod($email = null)
+    {
+        try {
+            $this->connection = $this->connect();
+            $sql =  "SELECT `date_joined`as registered, `subscription` FROM `owners` WHERE email = ?";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            if ($stmt === false) {
+                die('Error preparing SQL: ' . mysqli_error($this->connection)); // Debugging purpose
+            }
+
+            // Bind the email parameter to the prepared statement
+            mysqli_stmt_bind_param($stmt, 's', $email);
+
+            // Execute the statement
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            if (mysqli_num_rows($result) > 0) {
+                $result = mysqli_fetch_assoc($result);
+                $date_registered = $result['registered'];
+                $subscription = $result['subscription'];
+                if ($subscription == 1) {
+                    // Set the trial start date (could be current date or fetched from the database)
+                    $trial_start_date = new DateTime($date_registered); // current date
+
+                    // Clone the start date and add 10 days to get the trial end date
+                    $trial_end_date = clone $trial_start_date;
+                    $trial_end_date->modify('+10 days');
+
+                    // Get the current date (to calculate remaining days if needed)
+                    $current_date = new DateTime();
+
+                    // Calculate the difference between the trial end date and the current date
+                    $remaining_days = $current_date->diff($trial_end_date)->days;
+
+                    // Check if the trial is still active or has ended
+                    if ($current_date > $trial_end_date) {
+                        $trial =  "Trial has ended.";
+                        return $trial;
+                    } else {
+                        $trial = "Trial ends in $remaining_days days!.";
+                        return $trial;
+                    }
+                }
+            }
+        } catch (\Error $err) {
+            throw $err;
+        }
     }
 }
 
@@ -321,5 +402,3 @@ $getApartments = new Apartments;
 $getTenants = new Tenants;
 $getActivation = new Activation;
 $getCaretakers = new Caretakers;
-echo $get_all_tenants = $getTenants->addTenant(35679255, "Tom James", 1);
-// $get_all_tenants = $getTenants->addTenant();
