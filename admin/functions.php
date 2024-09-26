@@ -383,7 +383,7 @@ class Owners extends Database
 
                     // Check if the trial is still active or has ended
                     if ($current_date > $trial_end_date) {
-                        $trial =  "Trial has ended.";
+                        $trial =  0;
                         return $trial;
                     } else {
                         $trial = "Trial ends in $remaining_days days!.";
