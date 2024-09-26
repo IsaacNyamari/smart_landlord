@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,20 +12,24 @@
             margin: 0;
             padding: 20px;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
+
         h1 {
             text-align: center;
             margin-bottom: 40px;
             color: #333;
         }
+
         .row {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
         }
+
         .card {
             position: relative;
             width: 300px;
@@ -32,6 +37,7 @@
             perspective: 1000px;
             margin: 20px;
         }
+
         .card-inner {
             position: absolute;
             width: 100%;
@@ -39,10 +45,13 @@
             transition: transform 0.6s;
             transform-style: preserve-3d;
         }
+
         .card:hover .card-inner {
             transform: rotateY(180deg);
         }
-        .card-front, .card-back {
+
+        .card-front,
+        .card-back {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -54,9 +63,11 @@
             align-items: center;
             backface-visibility: hidden;
         }
+
         .card-front {
             background: white;
         }
+
         .card-back {
             background: #007bff;
             color: white;
@@ -64,28 +75,34 @@
             padding: 5px;
             text-align: center;
         }
+
         .card-header {
             padding: 20px;
             text-align: center;
         }
+
         .card-body {
             padding: 20px;
             text-align: center;
         }
+
         .card-price {
             font-size: 2rem;
             font-weight: bold;
             margin: 15px 0;
             color: #007bff;
         }
+
         .list-unstyled {
             list-style: none;
             padding: 0;
         }
+
         .list-unstyled li {
             margin: 10px 0;
             color: #666;
         }
+
         .btn {
             background-color: #a07aff;
             color: white;
@@ -95,11 +112,13 @@
             cursor: pointer;
             transition: background-color 0.3s;
         }
+
         .btn:hover {
             background-color: #aa56b3;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Our Packages</h1>
@@ -206,4 +225,5 @@
         </div>
     </div>
 </body>
+
 </html>
