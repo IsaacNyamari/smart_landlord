@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a class="nav-link" href="./">
+    <a class="nav-link collapsed" href="./">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
     </a>
@@ -16,3 +16,6 @@
         <span>Reports</span>
     </a>
 </li>
+
+<?php
+?>

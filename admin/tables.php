@@ -5,9 +5,6 @@ include("side_bar.php");
 <!-- ======= Sidebar ======= -->
 
 <!-- End Sidebar-->
-
-
-
 <main id="main" class="main">
 
   <div class="pagetitle">
