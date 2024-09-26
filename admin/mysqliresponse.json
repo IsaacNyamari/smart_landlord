@@ -1,0 +1,19 @@
+{
+    "1062": "Duplicate entry for a unique or primary key field.",
+    "1044": "Access denied for the user to the database.",
+    "1045": "Access denied for the user (incorrect username/password).",
+    "1049": "Unknown database (the database doesn't exist).",
+    "1050": "Table already exists (trying to create a table that already exists).",
+    "1051": "Unknown table (the table doesn't exist).",
+    "1054": "Unknown column (trying to query a column that doesn't exist in the table).",
+    "1064": "SQL syntax error (there is a mistake in the SQL query).",
+    "1146": "Table doesn't exist (querying or inserting into a non-existent table).",
+    "1216": "Cannot add or update a child row: a foreign key constraint fails.",
+    "1217": "Cannot delete or update a parent row: a foreign key constraint fails.",
+    "1264": "Out of range value for the column (trying to insert a value that exceeds the allowed range for the column).",
+    "1451": "Cannot delete or update a parent row: a foreign key constraint fails.",
+    "1452": "Cannot add or update a child row: a foreign key constraint fails.",
+    "1048": "Column cannot be null (trying to insert a NULL value into a NOT NULL column).",
+    "1366": "Incorrect string value (usually when trying to insert or update data that doesn't match the column's type).",
+    "2002": "Can't connect to the local MySQL server (server might not be running or connection parameters are incorrect)."
+}
