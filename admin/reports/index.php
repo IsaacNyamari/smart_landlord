@@ -5,17 +5,16 @@ include("../side_bar.php");
 
 <!-- Main -->
 <main id="main" class="main">
-
     <div class="pagetitle">
-        <h1>Data Tables</h1>
+        <h1>Manage</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item "><a class="active" href="../admin/">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a class="active" href="<?php echo $_SERVER['REQUEST_URI']?>">Reports</a></li></li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
+    <!-- End Page Title -->
 
     <section class="section">
         <div class="row">

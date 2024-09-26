@@ -10,11 +10,13 @@ include("../side_bar.php");
         <h1>Manage</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="../">Dashboard</a></li>
-                <li class="breadcrumb-item active">Apartments</li>
+                <li class="breadcrumb-item "><a class="active" href="../admin/">Dashboard</a></li>
+                <li class="breadcrumb-item active"><a class="active" href="<?php echo $_SERVER['REQUEST_URI'] ?>">Apartments</a></li>
+                </li>
             </ol>
         </nav>
-    </div><!-- End Page Title -->
+    </div>
+    <!-- End Page Title -->
 
     <section class="section">
         <div class="row">
