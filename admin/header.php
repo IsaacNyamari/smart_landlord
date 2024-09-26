@@ -202,7 +202,7 @@ $status = $owner['status']; ?>
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" href="logout.php">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
@@ -220,5 +220,15 @@ $status = $owner['status']; ?>
     <script>
         $(document).ready(function() {
             $('#myTable').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.toast').toast('show');
         });
     </script>

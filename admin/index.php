@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+
 include("side_bar.php");
 ?>
 <!-- End Sidebar-->
@@ -24,9 +25,8 @@ include("side_bar.php");
         <div class="row">
 
           <!-- Sales Card -->
-          <div class="col-xxl-4 col-md-6">
+          <div class="col-xxl-4 col-md-6" title="Rent Collected" data-toggle="tooltip" data-placement="top">
             <div class="card info-card sales-card">
-
               <div class="filter">
                 <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -59,7 +59,7 @@ include("side_bar.php");
           </div><!-- End Sales Card -->
 
           <!-- Revenue Card -->
-          <div class="col-xxl-4 col-md-6">
+          <div class="col-xxl-4 col-md-6" title="Revenue Collected" data-toggle="tooltip" data-placement="top">
             <div class="card info-card revenue-card">
 
               <div class="filter">
@@ -94,7 +94,7 @@ include("side_bar.php");
           </div><!-- End Revenue Card -->
 
           <!-- Tenants Card -->
-          <div class="col-xxl-4 col-md-6">
+          <div class="col-xxl-4 col-md-6" title="Tenants" data-toggle="tooltip" data-placement="top">
 
             <div class="card info-card customers-card">
 
