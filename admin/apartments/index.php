@@ -7,12 +7,11 @@ include("../side_bar.php");
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Data Tables</h1>
+        <h1>Manage</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item"><a href="../">Dashboard</a></li>
+                <li class="breadcrumb-item active">Apartments</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -21,11 +20,20 @@ include("../side_bar.php");
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card">
+                <div class="card bg-light">
                     <div class="card-body">
-                        <h5 class="card-title">Datatables</h5>
+                        <div class="card-title d-flex">
+                            <div>
+                                <button class="btn btn-success">Download PDF</button>
+                                <button class="btn btn-warning">Download CSV</button>
+                            </div>
+                            <div style="margin-left: auto;">
+                                <button class="btn btn-info">Add <i class="fa fa-edit"></i></button>
+                            </div>
+                        </div>
+                        <hr>
                         <!-- Table with stripped rows -->
-                        <table id="myTable" class="table table-dark table-hover display">
+                        <table id="myTable" class="table table-secondary table-hover display">
                             <thead>
                                 <tr>
                                     <th>Column 1</th>
