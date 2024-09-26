@@ -14,6 +14,13 @@ class Database
         }
     }
 }
+trait GenerateId
+{
+    public function generateId($length = 60)
+    {
+        return substr(md5(uniqid(mt_rand(), true)), 0, $length);
+    }
+}
 class Caretakers extends Database
 {
     public $connection;
@@ -35,10 +42,7 @@ class Caretakers extends Database
 class Apartments extends Database
 {
     public $connection;
-    public function generateId($length = 50)
-    {
-        return substr(md5(uniqid(mt_rand(), true)), 0, $length);
-    }
+    use GenerateId;
     public function getAparts()
     {
         $this->connection = $this->connect();
@@ -64,18 +68,52 @@ class Apartments extends Database
 class Tenants extends Database
 {
     public $connection;
-
+    use GenerateId;
     public function getTenants()
     {
         $this->connection = $this->connect();
+        $sql =  "SELECT * FROM tenants";
+        $stmt = mysqli_prepare($this->connection, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        return $result;
     }
-    public function addTenant()
+    public function addTenant($id_number = null, $names = null, $apartment = null)
     {
-        $this->connection = $this->connect();
+        try {
+            $id = $this->generateId(25);
+            $this->connection = $this->connect();
+            $sql =  "INSERT INTO `tenants`(`tenant_id`, `id_number`, `names`, `apartment`) 
+        VALUES (?,?,?,?)";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "ssss", $id, $id_number, $names, $apartment);
+            if (mysqli_stmt_execute($stmt)) {
+                $status = "success";
+                return $status;
+            } else {
+                if (mysqli_errno($this->connection) == 1062) {
+                    $status = "Id number already registered";
+                    return $status;
+                }
+            }
+        } catch (\Throwable $err) {
+            throw $err;
+        }
     }
-    public function deleteTenant()
+    public function deleteTenant($id = null)
     {
-        $this->connection = $this->connect();
+        try {
+            $this->connection = $this->connect();
+            $sql =  "DELETE FROM `tenants` WHERE tenant_id = ?";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "s", $id);
+            if (mysqli_stmt_execute($stmt)) {
+                $status = "success";
+                return $status;
+            }
+        } catch (\Error $err) {
+            throw $err;
+        }
     }
     public function updateTenant()
     {
@@ -85,7 +123,7 @@ class Tenants extends Database
 class Activation extends Database
 {
     public $connection;
-
+    use GenerateId;
     public function getActivation()
     {
         $this->connection = $this->connect();
@@ -106,7 +144,7 @@ class Activation extends Database
 class Owners extends Database
 {
     public $connection;
-
+    use GenerateId;
     public function getOwner($email)
     {
         // Ensure connection is established
@@ -226,7 +264,7 @@ class Owners extends Database
             echo 'No user found with that email.';
         }
     }
-    public function activateOwner($email,$code)
+    public function activateOwner($email, $code)
     {
         $this->connection = $this->connect();
         $get_activation = "SELECT * FROM `activation` WHERE email = ?";
@@ -271,3 +309,5 @@ $getApartments = new Apartments;
 $getTenants = new Tenants;
 $getActivation = new Activation;
 $getCaretakers = new Caretakers;
+echo $get_all_tenants = $getTenants->addTenant(35779255, "John Paul", 5);
+// $get_all_tenants = $getTenants->addTenant();
