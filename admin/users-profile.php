@@ -1,9 +1,7 @@
-<!-- Header -->
-<?php include("header.php") ?>
-<!-- End Header -->
-
-<!-- ======= Sidebar ======= -->
-<?php include("side_bar.php") ?>
+<?php
+include("header.php");
+include("side_bar.php");
+?>
 <!-- End Sidebar-->
 
 <main id="main" class="main">
@@ -25,9 +23,24 @@
 
         <div class="card">
           <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+            <div style="
+    background-color: blue;
+    color: #fff;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    font-size:30px;
+    justify-content: center;  /* Horizontally center the content */
+    align-items: center;      /* Vertically center the content */
+    margin: 0 auto;           /* Center the circle horizontally on the page */
+    font-weight: bold;
+    text-transform: uppercase;
+">
+              <div>IN</div>
+            </div>
 
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <h2><?php  echo $_SESSION['fname']." ".$_SESSION['lname']  ?></h2>
+            <h2><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']  ?></h2>
             <h3>Web Designer</h3>
             <div class="social-links mt-2">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -67,7 +80,7 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label ">Full Name</div>
-                  <div class="col-lg-9 col-md-8"><?php  echo $_SESSION['fname']." ".$_SESSION['lname']  ?></div>
+                  <div class="col-lg-9 col-md-8"><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']  ?></div>
                 </div>
 
                 <div class="row">
@@ -97,7 +110,7 @@
 
                 <div class="row">
                   <div class="col-lg-3 col-md-4 label">Email</div>
-                  <div class="col-lg-9 col-md-8"><?php  echo $_SESSION['email']?></div>
+                  <div class="col-lg-9 col-md-8"><?php echo $_SESSION['email'] ?></div>
                 </div>
 
               </div>
@@ -120,7 +133,7 @@
                   <div class="row mb-3">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="fullName" type="text" class="form-control" id="fullName" value="<?php  echo $_SESSION['fname']." ".$_SESSION['lname']  ?>">
+                      <input name="fullName" type="text" class="form-control" id="fullName" value="<?php echo $_SESSION['fname'] . " " . $_SESSION['lname']  ?>">
                     </div>
                   </div>
                   <div class="row mb-3">
@@ -161,7 +174,7 @@
                   <div class="row mb-3">
                     <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                     <div class="col-md-8 col-lg-9">
-                      <input name="email" type="email" class="form-control" id="Email" value="<?php  echo $_SESSION['email']?>">
+                      <input name="email" type="email" class="form-control" id="Email" value="<?php echo $_SESSION['email'] ?>">
                     </div>
                   </div>
 

@@ -1,32 +1,6 @@
 <?php
-require("protect.php");
-include("functions.php");
-$email = $_SESSION['email'];
-$owner = $getOwners->getOwner(trim($email));
-$status = $owner['status'];
-
-include("header.php") ?>
-<!-- ======= Sidebar ======= -->
-<?php include("side_bar.php");
-if ($status == 0) {
-  echo "<div style='
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fad81a;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    font-size: 18px;
-    z-index: 9999;
-'>
-    ⚠️ Your account is not activated!
-    <a href='../activate.php' style='color: white; text-decoration: underline;'>Activate Here</a>
-</div>
-";
-}
-
+include("header.php");
+include("side_bar.php");
 ?>
 <!-- End Sidebar-->
 

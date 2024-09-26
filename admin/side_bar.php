@@ -1,3 +1,4 @@
+
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -45,3 +46,23 @@
     </ul>
 
 </aside>
+<?php
+if ($status == 0) {
+    echo "<div style='
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fad81a;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 18px;
+      z-index: 9999;
+  '>
+      ⚠️ Your account is not activated!
+      <a href='../activate.php' style='color: white; text-decoration: underline;'>Activate Here</a>
+  </div>
+  ";
+}
+?>

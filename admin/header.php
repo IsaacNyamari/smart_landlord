@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+require("protect.php");
+include("functions.php");
+$email = $_SESSION['email'];
+$owner = $getOwners->getOwner(trim($email));
+$status = $owner['status']; ?>
 
 <head>
     <meta charset="utf-8">
@@ -136,13 +142,26 @@
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2"><?php  echo $_SESSION['lname'][0]." ".$_SESSION['fname']  ?></span>
+                        <div style="
+    background-color: blue;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    color:#fff;
+    justify-content: center;  /* Horizontally center the content */
+    align-items: center;      /* Vertically center the content */
+    margin: 0 auto;           /* Center the circle horizontally on the page */
+    font-weight: bold;
+    text-transform: uppercase;
+">
+                            <div><?php echo $_SESSION['fname'][0] . $_SESSION['lname'][0]  ?></div>
+                        </div>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6><?php  echo $_SESSION['fname']." ".$_SESSION['lname']  ?></h6>
+                            <h6><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']  ?></h6>
                             <span>LandLord</span>
                         </li>
                         <li>
@@ -150,7 +169,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
@@ -160,7 +179,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.php">
                                 <i class="bi bi-gear"></i>
                                 <span>Account Settings</span>
                             </a>
@@ -170,7 +189,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                            <a class="dropdown-item d-flex align-items-center" href="../faqs">
                                 <i class="bi bi-question-circle"></i>
                                 <span>Need Help?</span>
                             </a>
