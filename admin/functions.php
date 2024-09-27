@@ -1,4 +1,19 @@
 <?php
+function url_for($script)
+{
+    // Base URL for the project
+    $base_url = '/smart_landlord/admin/'; // Adjust this to your project's root URL if needed
+
+    // Ensure a leading slash and no double slashes
+    if ($script[0] !== '/') {
+        $script = __DIR__ . '/' . $script;
+    }
+
+    // Return the complete URL for the CSS file
+    return $base_url . ltrim($script, '/');
+}
+
+
 class Database
 {
     protected $hostname = "localhost";
@@ -46,30 +61,72 @@ class Caretakers extends Database
         $this->connection = $this->connect();
     }
 }
+
+
+
 class Apartments extends Database
 {
     public $connection;
     use GenerateId;
+
+    // Fetch apartments from the database
     public function getAparts()
     {
         $this->connection = $this->connect();
         $query = "SELECT * FROM apartments";
-        $result = mysqli_query($this->connect(), $query);
-        return $result;
+        $result = mysqli_query($this->connection, $query);
+
+        // Check if query succeeded
+        if (!$result) {
+            die('Error: ' . mysqli_error($this->connection));
+        }
+
+        // Fetch all apartments data as an associative array
+        $apartments = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $apartments[] = $row;
+        }
+
+        return $apartments;
     }
-    public function addApart()
+
+    // Generate a PDF with apartment data
+
+
+
+
+    // Add a new apartment
+    public function addApart($name = null, $location = null, $caretaker = null, $owner, $rooms, $vacant)
     {
         $this->connection = $this->connect();
+        $id = $this->generateId(25);
+        $add_apart = "INSERT INTO `apartments`(`apart_id`, `name`, `location`, `caretaker`, `landlord`, `rooms`, `vacant`) VALUES (?,?,?,?,?,?,?)";
+        $stmt = mysqli_prepare($this->connection, $add_apart);
+        mysqli_stmt_bind_param($stmt, "sssssss", $id, $name, $location, $caretaker, $owner, $rooms, $vacant);
+
+        if (mysqli_connect_errno($this->connection)) {
+            return mysqli_errno($this->connection);
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            header("Location: /admin/apartments");
+            exit;
+        } else {
+            echo mysqli_stmt_error($stmt);
+        }
     }
+
     public function deleteApart()
     {
         $this->connection = $this->connect();
     }
+
     public function updateApart()
     {
         $this->connection = $this->connect();
     }
 }
+
 class Tenants extends Database
 {
     public $connection;
@@ -387,6 +444,6 @@ class Owners extends Database
 }
 
 $getOwners = new Owners;
-// $getApartments = new Apartments;
+$getApartments = new Apartments;
 $getTenants = new Tenants;
 $getCaretakers = new Caretakers;

@@ -2,12 +2,12 @@
 require_once("../functions.php");
 session_start();
 $apartments = new Apartments;
-var_dump($apartments->getAparts());
-die;
-echo $_SESSION['id'];
 if (isset($_POST['addApartment'])) {
-    $names = $_POST['names'];
-    $_POST['location'];
-    $_POST['apartment'];
-    echo $getApartments->addApart();
+    $name = $_POST['name'];
+    $owner = $_SESSION['id'];
+    $location = $_POST['location'];
+    $rooms = $_POST['rooms'];
+    $vacant = $_POST['vacant'];
+    $caretaker = null;
+    echo $apartments->addApart($name, $location, $caretaker, $owner, $rooms, $vacant);
 }

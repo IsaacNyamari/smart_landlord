@@ -1,6 +1,8 @@
 <?php
 include("../header.php");
 include("../side_bar.php");
+$getApartments = new Apartments;
+$apartments = $getApartments->getAparts();
 ?>
 
 <!-- Main -->
@@ -26,11 +28,11 @@ include("../side_bar.php");
                     <div class="card-body">
                         <div class="card-title d-flex">
                             <div>
-                                <button class="btn btn-success">Download PDF</button>
+                                <a href="apartments/downloadPdf.php?pdf=download" class="btn btn-success">Download PDF</a>
                                 <button class="btn btn-warning">Download CSV</button>
                             </div>
                             <div style="margin-left: auto;">
-                                <button class="btn btn-info">Add <i class="fa fa-edit"></i></button>
+                                <button class="btn btn-info" data-toggle="modal" data-target="#addApartment">Add <i class="fa fa-edit"></i></button>
                             </div>
                         </div>
                         <hr>
@@ -38,70 +40,23 @@ include("../side_bar.php");
                         <table id="myTable" class="table table-secondary table-hover display">
                             <thead>
                                 <tr>
-                                    <th>Column 1</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
+                                    <th>Name</th>
+                                    <th>Location</th>
+                                    <th>Caretaker</th>
+                                    <th>Rooms</th>
+                                    <th>Vacant</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Walker Nixon</td>
-                                    <td>6901</td>
-                                    <td>Metz</td>
-                                    <td>2011/12/11</td>
-                                    <td>41%</td>
-                                </tr>
-                                <tr>
-                                    <td>Nathan Espinoza</td>
-                                    <td>5956</td>
-                                    <td>Strathcona County</td>
-                                    <td>2002/25/01</td>
-                                    <td>47%</td>
-                                </tr>
-                                <tr>
-                                    <td>Kelly Cameron</td>
-                                    <td>4836</td>
-                                    <td>Fontaine-Valmont</td>
-                                    <td>1999/02/07</td>
-                                    <td>24%</td>
-                                </tr>
-                                <tr>
-                                    <td>Kyra Moses</td>
-                                    <td>3796</td>
-                                    <td>Quenast</td>
-                                    <td>1998/07/07</td>
-                                    <td>68%</td>
-                                </tr>
-                                <tr>
-                                    <td>Grace Bishop</td>
-                                    <td>8340</td>
-                                    <td>Rodez</td>
-                                    <td>2012/02/10</td>
-                                    <td>4%</td>
-                                </tr>
-                                <tr>
-                                    <td>Haviva Hernandez</td>
-                                    <td>8136</td>
-                                    <td>Suwałki</td>
-                                    <td>2000/30/01</td>
-                                    <td>16%</td>
-                                </tr>
-                                <tr>
-                                    <td>Alisa Horn</td>
-                                    <td>9853</td>
-                                    <td>Ucluelet</td>
-                                    <td>2007/01/11</td>
-                                    <td>39%</td>
-                                </tr>
-                                <tr>
-                                    <td>Zelenia Roman</td>
-                                    <td>7516</td>
-                                    <td>Redwater</td>
-                                    <td>2012/03/03</td>
-                                    <td>31%</td>
-                                </tr>
+                                <?php foreach ($apartments as $apartment) { ?>
+                                    <tr>
+                                        <td><?php echo $apartment['name'] ?></td>
+                                        <td><?php echo $apartment['location'] ?></td>
+                                        <td><?php echo $apartment['caretaker'] !== null ? $apartment['caretaker'] : "N/A" ?></td>
+                                        <td><?php echo $apartment['rooms'] ?></td>
+                                        <td><?php echo $apartment['vacant'] ?></td>
+                                    </tr>
+                                <?php  } ?>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
@@ -115,29 +70,42 @@ include("../side_bar.php");
 
 </main>
 <!--End of Main -->
-   <!-- The Modal -->
-   <div class="modal fade" id="addApartment">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+<!-- The Modal -->
+<div class="modal fade" id="addApartment">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="apartments/addApartment.php" method="post">
+                    <div class="form-group">
+                        <label for="names">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Eg Delta-House">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" name="location" id="location" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="rooms">Rooms</label>
+                        <input type="text" name="rooms" id="rooms" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="vacant">Vacant</label>
+                        <input type="text" name="vacant" id="vacant" class="form-control" placeholder="eg 10,2,0">
+                    </div>
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+                    <button type="submit" name="addApartment" class="btn btn-success">Add</button>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    Modal body..
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-
+                </form>
             </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
         </div>
     </div>
+</div>
 
 <?php include("../footer.php") ?>
