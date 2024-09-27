@@ -37,7 +37,7 @@ include("side_bar.php");
     font-weight: bold;
     text-transform: uppercase;
 ">
-              <div>IN</div>
+              <div><?php echo $_SESSION['fname'][0] . " " . $_SESSION['lname'][0]  ?></div>
             </div>
 
             <h2><?php echo $_SESSION['fname'] . " " . $_SESSION['lname']  ?></h2>
