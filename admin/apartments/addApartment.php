@@ -1,7 +1,8 @@
 <?php
 require_once("../functions.php");
 session_start();
-var_dump($getApartments->getAparts());
+$apartments = new Apartments;
+var_dump($apartments->getAparts());
 die;
 echo $_SESSION['id'];
 if (isset($_POST['addApartment'])) {
