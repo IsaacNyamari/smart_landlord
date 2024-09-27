@@ -10,7 +10,8 @@ include("../side_bar.php");
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item "><a class="active" href="../">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a class="active" href="<?php echo $_SERVER['REQUEST_URI']?>">Tenants</a></li></li>
+                <li class="breadcrumb-item active"><a class="active" href="<?php echo $_SERVER['REQUEST_URI'] ?>">Tenants</a></li>
+                </li>
             </ol>
         </nav>
     </div>
@@ -20,7 +21,7 @@ include("../side_bar.php");
         <div class="row">
             <div class="col-lg-12">
 
-            <div class="card bg-light">
+                <div class="card bg-light">
                     <div class="card-body">
                         <div class="card-title d-flex">
                             <div>
@@ -28,7 +29,7 @@ include("../side_bar.php");
                                 <button class="btn btn-warning">Download CSV</button>
                             </div>
                             <div style="margin-left: auto;">
-                                <button class="btn btn-info">Add <i class="fa fa-edit"></i></button>
+                                <button class="btn btn-info" data-toggle="modal" data-target="#addTenant">Add <i class="fa fa-edit"></i></button>
                             </div>
                         </div>
                         <hr>
@@ -111,6 +112,34 @@ include("../side_bar.php");
         </div>
     </section>
 
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTenant">
+        Open modal
+    </button> -->
+
+    <!-- The Modal -->
+    <div class="modal fade" id="addTenant">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </main>
 <!--End of Main -->
 <?php include("../footer.php") ?>

@@ -83,7 +83,7 @@ class Tenants extends Database
         $result = mysqli_stmt_get_result($stmt);
         return $result;
     }
-    public function addTenant($id_number = null, $names = null, $apartment = null)
+    public function addTenant($id_number = null, $names = null, $apartment = null, $landlord_id)
     {
         try {
             $id = $this->generateId(25);
@@ -250,6 +250,7 @@ class Owners extends Database
                 $_SESSION["fname"] = $user_data['fname'];
                 $_SESSION["lname"] = $user_data['lname'];
                 $_SESSION["email"] = $user_data['email'];
+                $_SESSION["id"] = $user_data['owner_id'];
                 $_SESSION["owner"] = true;
 
                 // Redirect to homepage
