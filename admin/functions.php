@@ -83,18 +83,18 @@ class Tenants extends Database
         $result = mysqli_stmt_get_result($stmt);
         return $result;
     }
-    public function addTenant($id_number = null, $names = null, $apartment = null, $landlord_id)
+    public function addTenant($id_number = null, $names = null, $apartment = null, $landlord_id = null)
     {
         try {
             $id = $this->generateId(25);
             $this->connection = $this->connect();
-            $sql =  "INSERT INTO `tenants`(`tenant_id`, `id_number`, `names`, `apartment`) 
-        VALUES (?,?,?,?)";
+            $sql =  "INSERT INTO `tenants`(`tenant_id`, `id_number`, `names`, `apartment`,`landlord_id`) 
+        VALUES (?,?,?,?,?)";
             $stmt = mysqli_prepare($this->connection, $sql);
-            mysqli_stmt_bind_param($stmt, "ssss", $id, $id_number, $names, $apartment);
+            mysqli_stmt_bind_param($stmt, "sssss", $id, $id_number, $names, $apartment, $landlord_id);
             if (mysqli_stmt_execute($stmt)) {
-                $status = "Successfully added!";
-                return $status;
+                $header = header("Location:tenants.php");
+                return $header;
             } else {
                 if (mysqli_errno($this->connection) == 1062) {
                     $status = "Users exists with this id!";
@@ -387,6 +387,6 @@ class Owners extends Database
 }
 
 $getOwners = new Owners;
-$getApartments = new Apartments;
+// $getApartments = new Apartments;
 $getTenants = new Tenants;
 $getCaretakers = new Caretakers;
