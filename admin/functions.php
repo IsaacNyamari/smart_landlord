@@ -46,17 +46,49 @@ trait GenerateCode
 class Caretakers extends Database
 {
     public $connection;
+    use GenerateId;
+    public function getCaretakers($employer) {
+        $this->connection = $this->connect();
+        $query = "SELECT * FROM `caretakers` WHERE `employer` = '$employer'";
+        $result = mysqli_query($this->connection, $query);
 
-    public function getAparts() {}
-    public function addApart()
+        // Check if query succeeded
+        if (!$result) {
+            die('Error: ' . mysqli_error($this->connection));
+        }
+
+        // Fetch all caretakers data as an associative array
+        $caretakers = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $caretakers[] = $row;
+        }
+
+        return $caretakers;
+    }
+    public function addCaretaker($owner, $names, $phone, $id_number)
+    {
+        $this->connection = $this->connect();
+        $id = $this->generateId(25);
+        $add_apart = "INSERT INTO `caretakers`(`caretaker_id`, `names`, `id_number`, `phone`, `employer`) VALUES (?,?,?,?,?)";
+        $stmt = mysqli_prepare($this->connection, $add_apart);
+        mysqli_stmt_bind_param($stmt, "sssss", $id, $names, $id_number, $phone, $owner);
+
+        if (mysqli_connect_errno($this->connection)) {
+            return mysqli_errno($this->connection);
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            header("Location: /admin/caretakers");
+            exit;
+        } else {
+            echo mysqli_stmt_error($stmt);
+        }
+    }
+    public function deleteCaretaker()
     {
         $this->connection = $this->connect();
     }
-    public function deleteApart()
-    {
-        $this->connection = $this->connect();
-    }
-    public function updateApart()
+    public function updateCaretaker()
     {
         $this->connection = $this->connect();
     }
@@ -98,6 +130,7 @@ class Apartments extends Database
     // Add a new apartment
     public function addApart($name = null, $location = null, $caretaker = null, $owner, $rooms, $vacant)
     {
+
         $this->connection = $this->connect();
         $id = $this->generateId(25);
         $add_apart = "INSERT INTO `apartments`(`apart_id`, `name`, `location`, `caretaker`, `landlord`, `rooms`, `vacant`) VALUES (?,?,?,?,?,?,?)";

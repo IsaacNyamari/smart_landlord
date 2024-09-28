@@ -1,6 +1,9 @@
 <?php
 include("../header.php");
 include("../side_bar.php");
+$getCaretakers = new Caretakers;
+$employer = $_SESSION['id'];
+$caretakers = $getCaretakers->getCaretakers($employer);
 ?>
 
 <!-- Main -->
@@ -30,7 +33,7 @@ include("../side_bar.php");
                                 <button class="btn btn-warning">Download CSV</button>
                             </div>
                             <div style="margin-left: auto;">
-                                <button class="btn btn-info">Add <i class="fa fa-edit"></i></button>
+                                <button class="btn btn-info" data-toggle="modal" data-target="#addCaretaker">Add <i class="fa fa-edit"></i></button>
                             </div>
                         </div>
                         <hr>
@@ -38,70 +41,19 @@ include("../side_bar.php");
                         <table id="myTable" class="table table-secondary table-hover display">
                             <thead>
                                 <tr>
-                                    <th>Column 1</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
+                                    <th>Names</th>
+                                    <th>ID Number</th>
+                                    <th>Phone</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Walker Nixon</td>
-                                    <td>6901</td>
-                                    <td>Metz</td>
-                                    <td>2011/12/11</td>
-                                    <td>41%</td>
-                                </tr>
-                                <tr>
-                                    <td>Nathan Espinoza</td>
-                                    <td>5956</td>
-                                    <td>Strathcona County</td>
-                                    <td>2002/25/01</td>
-                                    <td>47%</td>
-                                </tr>
-                                <tr>
-                                    <td>Kelly Cameron</td>
-                                    <td>4836</td>
-                                    <td>Fontaine-Valmont</td>
-                                    <td>1999/02/07</td>
-                                    <td>24%</td>
-                                </tr>
-                                <tr>
-                                    <td>Kyra Moses</td>
-                                    <td>3796</td>
-                                    <td>Quenast</td>
-                                    <td>1998/07/07</td>
-                                    <td>68%</td>
-                                </tr>
-                                <tr>
-                                    <td>Grace Bishop</td>
-                                    <td>8340</td>
-                                    <td>Rodez</td>
-                                    <td>2012/02/10</td>
-                                    <td>4%</td>
-                                </tr>
-                                <tr>
-                                    <td>Haviva Hernandez</td>
-                                    <td>8136</td>
-                                    <td>Suwałki</td>
-                                    <td>2000/30/01</td>
-                                    <td>16%</td>
-                                </tr>
-                                <tr>
-                                    <td>Alisa Horn</td>
-                                    <td>9853</td>
-                                    <td>Ucluelet</td>
-                                    <td>2007/01/11</td>
-                                    <td>39%</td>
-                                </tr>
-                                <tr>
-                                    <td>Zelenia Roman</td>
-                                    <td>7516</td>
-                                    <td>Redwater</td>
-                                    <td>2012/03/03</td>
-                                    <td>31%</td>
-                                </tr>
+                                <?php foreach ($caretakers as $caretaker) { ?>
+                                    <tr>
+                                        <td><?php echo $caretaker['names'] ?></td>
+                                        <td><?php echo $caretaker['id_number'] ?></td>
+                                        <td><?php echo $caretaker['phone'] !== null ? $caretaker['phone'] : "N/A" ?></td>
+                                    </tr>
+                                <?php  } ?>
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
@@ -116,5 +68,35 @@ include("../side_bar.php");
 </main>
 <!--End of Main -->
 
+<div class="modal fade" id="addCaretaker">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form action="caretakers/addCaretaker.php" method="post">
+                    <div class="form-group">
+                        <label for="names">Names</label>
+                        <input type="text" name="names" id="name" class="form-control" placeholder="Eg Delta-House">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_number">Id Number</label>
+                        <input type="text" name="id_number" id="id_number" class="form-control" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="">
+                    </div>
+                    <button type="submit" name="addCaretaker" class="btn btn-success">Add</button>
 
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
 <?php include("../footer.php") ?>

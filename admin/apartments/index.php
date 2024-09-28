@@ -79,7 +79,7 @@ $apartments = $getApartments->getAparts();
                 <form action="apartments/addApartment.php" method="post">
                     <div class="form-group">
                         <label for="names">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Eg Delta-House">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
