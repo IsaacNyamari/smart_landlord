@@ -44,6 +44,7 @@ $caretakers = $getCaretakers->getCaretakers($employer);
                                     <th>Names</th>
                                     <th>ID Number</th>
                                     <th>Phone</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -52,6 +53,10 @@ $caretakers = $getCaretakers->getCaretakers($employer);
                                         <td><?php echo $caretaker['names'] ?></td>
                                         <td><?php echo $caretaker['id_number'] ?></td>
                                         <td><?php echo $caretaker['phone'] !== null ? $caretaker['phone'] : "N/A" ?></td>
+                                        <td>
+                                            <a href="actions/?action=edit&&target=caretaker&&caretaker_id=<?php echo $caretaker['caretaker_id']?>" class="btn btn-warning"><i class="bi bi-pen"></i></a>
+                                            <a href="actions/?action=delete&&target=caretaker&&caretaker_id=<?php echo $caretaker['caretaker_id']?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                        </td>
                                     </tr>
                                 <?php  } ?>
                             </tbody>

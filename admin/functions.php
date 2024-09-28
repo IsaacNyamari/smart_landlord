@@ -108,9 +108,22 @@ class Caretakers extends Database
             echo mysqli_stmt_error($stmt);
         }
     }
-    public function deleteCaretaker()
+    public function deleteCaretaker($caretaker_id, $owner)
     {
         $this->connection = $this->connect();
+        $sql = "DELETE FROM caretakers WHERE `caretaker_id`=? AND `employer`=?";
+        $stmt = mysqli_prepare($this->connection, $sql);
+        mysqli_stmt_bind_param($stmt, "ss", $caretaker_id, $owner);
+        if (mysqli_stmt_execute($stmt)) {
+            $caretaker = null;
+            $sql = "UPDATE apartments SET caretaker = ? WHERE landlord = ?";
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "ss", $caretaker,$owner);
+            if (mysqli_stmt_execute($stmt)) {
+                header("Location: /admin/caretakers");
+                exit;
+            }
+        }
     }
     public function updateCaretaker()
     {
@@ -172,9 +185,9 @@ class Apartments extends Database
     {
         $this->connection = $this->connect();
         $sql = "DELETE FROM apartments WHERE `apart_id`=? AND `landlord`=?";
-        $stmt = mysqli_prepare($this->connection,$sql);
-        mysqli_stmt_bind_param($stmt,"ss",$apart_id,$owner);
-        if(mysqli_stmt_execute($stmt)){
+        $stmt = mysqli_prepare($this->connection, $sql);
+        mysqli_stmt_bind_param($stmt, "ss", $apart_id, $owner);
+        if (mysqli_stmt_execute($stmt)) {
             header("Location: /admin/apartments");
             exit;
         }
