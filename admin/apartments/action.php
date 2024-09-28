@@ -1,16 +1,18 @@
 <?php
 require_once("../functions.php");
 session_start();
-if (isset($_POST['action'])) {
-    $action = $_POST['action'];
-    $apart_id = $_POST['apart_id'];
-    $target = $_POST['target'];
+$deleteApart = new Apartments;
+if (isset($_GET['action'])) {
+    $action = $_GET['action'];
+    $apart_id = $_GET['apart_id'];
+    $target = $_GET['target'];
     $owner = $_SESSION['id'];
     switch ($action) {
         case 'delete':
             switch ($target) {
                 case 'apartment':
-                    echo $deleteApart->deleteApart($apart_id, $owner);
+                    $deleteApart->deleteApart($apart_id, $owner);
+                    
                     break;
 
                 default:

@@ -168,9 +168,16 @@ class Apartments extends Database
         }
     }
 
-    public function deleteApart()
+    public function deleteApart($apart_id, $owner)
     {
         $this->connection = $this->connect();
+        $sql = "DELETE FROM apartments WHERE `apart_id`=? AND `landlord`=?";
+        $stmt = mysqli_prepare($this->connection,$sql);
+        mysqli_stmt_bind_param($stmt,"ss",$apart_id,$owner);
+        if(mysqli_stmt_execute($stmt)){
+            header("Location: /admin/apartments");
+            exit;
+        }
     }
 
     public function updateApart()

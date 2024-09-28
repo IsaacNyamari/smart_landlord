@@ -60,8 +60,8 @@ $caretakers = $getCaretakers->getCaretakers($owner);
                                         <td><?php echo $apartment['rooms'] ?></td>
                                         <td><?php echo $apartment['vacant'] ?></td>
                                         <td>
-                                            <a href="action.php?action=edit&&apart_id=<?php echo $apartment['id']?>" class="btn btn-warning"><i class="bi bi-pen"></i></a>
-                                            <a href="" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                            <a href="apartments/action.php?action=edit&&target=apartment&&apart_id=<?php echo $apartment['id']?>" class="btn btn-warning"><i class="bi bi-pen"></i></a>
+                                            <a href="apartments/action.php?action=delete&&target=apartment&&apart_id=<?php echo $apartment['id']?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php  } ?>
