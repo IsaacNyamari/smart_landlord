@@ -43,11 +43,34 @@ trait GenerateCode
         return strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, $length));
     }
 }
+trait GetCaretaker
+{
+    public function getCaretaker($id)
+    {
+        $this->connection = $this->connect();
+        $query = "SELECT `names` FROM `caretakers` WHERE `caretaker_id` = '$id'";
+        $result = mysqli_query($this->connection, $query);
+
+        // Check if query succeeded
+        if (!$result) {
+            die('Error: ' . mysqli_error($this->connection));
+        }
+
+        // Fetch all caretakers data as an associative array
+        $caretakers = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $caretakers[] = $row;
+        }
+
+        return $caretakers;
+    }
+}
 class Caretakers extends Database
 {
     public $connection;
     use GenerateId;
-    public function getCaretakers($employer) {
+    public function getCaretakers($employer)
+    {
         $this->connection = $this->connect();
         $query = "SELECT * FROM `caretakers` WHERE `employer` = '$employer'";
         $result = mysqli_query($this->connection, $query);
@@ -65,6 +88,7 @@ class Caretakers extends Database
 
         return $caretakers;
     }
+
     public function addCaretaker($owner, $names, $phone, $id_number)
     {
         $this->connection = $this->connect();
@@ -100,12 +124,12 @@ class Apartments extends Database
 {
     public $connection;
     use GenerateId;
-
+    use GetCaretaker;
     // Fetch apartments from the database
-    public function getAparts()
+    public function getAparts($owner)
     {
         $this->connection = $this->connect();
-        $query = "SELECT * FROM apartments";
+        $query = "SELECT `apart_id` as id, `name` as `apart_name`,`names` as caretaker,location,rooms,vacant FROM apartments a LEFT JOIN caretakers c on a.caretaker = c.caretaker_id WHERE landlord = '$owner'";
         $result = mysqli_query($this->connection, $query);
 
         // Check if query succeeded
@@ -121,11 +145,6 @@ class Apartments extends Database
 
         return $apartments;
     }
-
-    // Generate a PDF with apartment data
-
-
-
 
     // Add a new apartment
     public function addApart($name = null, $location = null, $caretaker = null, $owner, $rooms, $vacant)

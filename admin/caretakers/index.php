@@ -76,15 +76,15 @@ $caretakers = $getCaretakers->getCaretakers($employer);
                 <form action="caretakers/addCaretaker.php" method="post">
                     <div class="form-group">
                         <label for="names">Names</label>
-                        <input type="text" name="names" id="name" class="form-control" placeholder="Eg Delta-House">
+                        <input type="text" name="names" id="name" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="id_number">Id Number</label>
-                        <input type="text" name="id_number" id="id_number" class="form-control" placeholder="">
+                        <input type="text" name="id_number" id="id_number" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="text" name="phone" id="phone" class="form-control" placeholder="">
+                        <input type="text" name="phone" id="phone" class="form-control" required>
                     </div>
                     <button type="submit" name="addCaretaker" class="btn btn-success">Add</button>
 

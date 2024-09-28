@@ -8,6 +8,6 @@ if (isset($_POST['addApartment'])) {
     $location = $_POST['location'];
     $rooms = $_POST['rooms'];
     $vacant = $_POST['vacant'];
-    $caretaker = null;
+    $caretaker = $_POST['caretaker'];
     echo $apartments->addApart($name, $location, $caretaker, $owner, $rooms, $vacant);
 }
