@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-
+include('protect.php');
 include("loader.php");
 include("../admin/initialize.php");
 ?>
