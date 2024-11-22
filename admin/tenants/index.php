@@ -30,8 +30,8 @@ $apartments = $getApartments->getAparts($landlord_id);
                     <div class="card-body">
                         <div class="card-title d-flex">
                             <div>
-                                <button class="btn btn-success">Download PDF</button>
-                                <button class="btn btn-warning">Download CSV</button>
+                            <a href="../../download.php?table=tenants" class="btn btn-success">Download PDF</a>
+                            <a href="../../downloadCsv.php?table=tenants" class="btn btn-warning">Download CSV</a>
                             </div>
                             <div style="margin-left: auto;">
                                 <button class="btn btn-info" data-toggle="modal" data-target="#addTenant">Add <i class="fa fa-edit"></i></button>

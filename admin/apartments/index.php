@@ -31,8 +31,10 @@ $caretakers = $getCaretakers->getCaretakers($owner);
                     <div class="card-body">
                         <div class="card-title d-flex">
                             <div>
-                                <a href="apartments/downloadPdf.php?pdf=download" class="btn btn-success">Download PDF</a>
-                                <button class="btn btn-warning">Download CSV</button>
+                            <a href="../../download.php?table=apartments" class="btn btn-success">Download PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>                               
+                            <a href="../../downloadCsv.php?table=apartments" class="btn btn-warning">Download CSV</a>  
+                                                 
+                             <!-- <button class="btn btn-warning">Download CSV</button> -->
                             </div>
                             <div style="margin-left: auto;">
                                 <button class="btn btn-info" data-toggle="modal" data-target="#addApartment">Add <i class="bi bi-plus"></i></button>

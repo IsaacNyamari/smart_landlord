@@ -556,9 +556,32 @@ class Message extends Database
             return "invalid data";
         }
     }
+    public function getMessages(){
+        $this->connection = $this->connect();
+
+        // Prepare the SQL query
+        $get_messages = "SELECT * FROM `messages`";
+        $stmt = mysqli_prepare($this->connection, $get_messages);
+
+        // Check if preparation was successful
+        if ($stmt === false) {
+            die('Error preparing SQL: ' . mysqli_error($this->connection)); // Debugging purpose
+        }
+
+        // Bind the email parameter to the prepared statement
+        // mysqli_stmt_bind_param($stmt, 's', $email);
+
+        // Execute the statement
+        mysqli_stmt_execute($stmt);
+
+        // Get the result
+        $result = mysqli_stmt_get_result($stmt);
+        return $result;
+    }
 }
 $getOwners = new Owners;
 $getApartments = new Apartments;
 $getTenants = new Tenants;
 $getCaretakers = new Caretakers;
 $addMessage = new Message;
+$getMessages = new Message;
