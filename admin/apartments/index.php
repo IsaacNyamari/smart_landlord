@@ -79,8 +79,8 @@ $caretakers = $getCaretakers->getCaretakers($owner);
 </main>
 <!--End of Main -->
 <!-- The Modal -->
-<div class="modal fade" id="addApartment">
-    <div class="modal-dialog modal-dialog-centered">
+<div class="modal fade" id="addApartment"  data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" data-bs-backdrop="static">
         <div class="modal-content">
             <!-- Modal body -->
             <div class="modal-body">

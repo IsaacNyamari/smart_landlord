@@ -529,7 +529,36 @@ class Owners extends Database
     }
 }
 
+
+class Message extends Database
+{
+    use generateId;
+    public $connection;
+    public function sendMessage($names = null, $email = null, $message = null)
+    {
+        $id = $this->generateId(20);
+        $this->connection = $this->connect();
+        $sql = "INSERT INTO `messages`(`message_id`, `sender_names`, `email`,`message`) 
+        VALUES (?,?,?,?)";
+        if ($names !== null && $email !== null && $message !== null) {
+            $stmt = mysqli_prepare($this->connection, $sql);
+            mysqli_stmt_bind_param($stmt, "ssss", $id, $names, $email, $message);
+            if (mysqli_stmt_execute($stmt)) {
+                echo "success";
+                exit;
+            } else {
+                if (mysqli_errno($this->connection) == 1062) {
+                    $status = "Users exists with this id!";
+                    return $status;
+                }
+            }
+        } else {
+            return "invalid data";
+        }
+    }
+}
 $getOwners = new Owners;
 $getApartments = new Apartments;
 $getTenants = new Tenants;
 $getCaretakers = new Caretakers;
+$addMessage = new Message;
