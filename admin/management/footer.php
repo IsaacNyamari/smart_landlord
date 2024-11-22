@@ -22,15 +22,19 @@
   <!-- Template Main JS File -->
   <script src="<?php echo url_for('/admin/assets/js/main.js') ?>"></script>
   <script>
-let message_count = document.getElementById("message_count");
-let param = `count=count`;
-let xhr = new XMLHttpRequest();
-xhr.open()
-xhr.onload = function(){
-  console.log(this.response);
-  
-}
-xhr.send(param)
+    let message_count = document.getElementById("message_count");
+    let param = `count=count`;
+    setInterval(() => {
+      let xhr = new XMLHttpRequest();
+      xhr.open("POST", "loader.php", true)
+      xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+      xhr.onload = function() {
+        let data = JSON.parse(this.response)
+        message_count.textContent = data.count;
+
+      }
+      xhr.send(param)
+    }, 300)
   </script>
   </body>
 
