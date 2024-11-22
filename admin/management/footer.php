@@ -20,8 +20,18 @@
   <script src="<?php echo url_for('/admin/assets/vendor/php-email-form/validate.js') ?>"></script>
 
   <!-- Template Main JS File -->
-  <script src="<?php echo url_for('/admin/assets/js/main.js')?>"></script>
-
+  <script src="<?php echo url_for('/admin/assets/js/main.js') ?>"></script>
+  <script>
+let message_count = document.getElementById("message_count");
+let param = `count=count`;
+let xhr = new XMLHttpRequest();
+xhr.open()
+xhr.onload = function(){
+  console.log(this.response);
+  
+}
+xhr.send(param)
+  </script>
   </body>
 
   </html>
