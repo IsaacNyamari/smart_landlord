@@ -7,7 +7,7 @@ if ($messages->num_rows == 0) {
         $text = "no new messages";
         echo json_encode([
             "count" => $message_count,
-            "" => $text
+            "text" => $text
         ]);
     }
 } else {
