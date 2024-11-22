@@ -1,6 +1,11 @@
 <?php
 include("../header.php");
 include("../side_bar.php");
+$landlord_id = $_SESSION['id'];
+$getTenants = new Tenants;
+$tenants = $getTenants->getTenants($landlord_id);
+$getApartments = new Apartments;
+$apartments = $getApartments->getAparts($landlord_id);
 ?>
 <!-- Main -->
 <main id="main" class="main">
@@ -37,70 +42,27 @@ include("../side_bar.php");
                         <table id="myTable" class="table table-secondary table-hover display">
                             <thead>
                                 <tr>
-                                    <th>Column 1</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
-                                    <th>Column 2</th>
+                                    <th>Names</th>
+                                    <th>ID Numner</th>
+                                    <th>Phone</th>
+                                    <th>Apartment</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Walker Nixon</td>
-                                    <td>6901</td>
-                                    <td>Metz</td>
-                                    <td>2011/12/11</td>
-                                    <td>41%</td>
-                                </tr>
-                                <tr>
-                                    <td>Nathan Espinoza</td>
-                                    <td>5956</td>
-                                    <td>Strathcona County</td>
-                                    <td>2002/25/01</td>
-                                    <td>47%</td>
-                                </tr>
-                                <tr>
-                                    <td>Kelly Cameron</td>
-                                    <td>4836</td>
-                                    <td>Fontaine-Valmont</td>
-                                    <td>1999/02/07</td>
-                                    <td>24%</td>
-                                </tr>
-                                <tr>
-                                    <td>Kyra Moses</td>
-                                    <td>3796</td>
-                                    <td>Quenast</td>
-                                    <td>1998/07/07</td>
-                                    <td>68%</td>
-                                </tr>
-                                <tr>
-                                    <td>Grace Bishop</td>
-                                    <td>8340</td>
-                                    <td>Rodez</td>
-                                    <td>2012/02/10</td>
-                                    <td>4%</td>
-                                </tr>
-                                <tr>
-                                    <td>Haviva Hernandez</td>
-                                    <td>8136</td>
-                                    <td>Suwałki</td>
-                                    <td>2000/30/01</td>
-                                    <td>16%</td>
-                                </tr>
-                                <tr>
-                                    <td>Alisa Horn</td>
-                                    <td>9853</td>
-                                    <td>Ucluelet</td>
-                                    <td>2007/01/11</td>
-                                    <td>39%</td>
-                                </tr>
-                                <tr>
-                                    <td>Zelenia Roman</td>
-                                    <td>7516</td>
-                                    <td>Redwater</td>
-                                    <td>2012/03/03</td>
-                                    <td>31%</td>
-                                </tr>
+                                <?php foreach ($tenants as $tenant) { ?>
+                                    <tr>
+                                        <td><?php echo $tenant['names'] ?></td>
+                                        <td><?php echo $tenant['id_number'] ?></td>
+                                        <td><?php echo $tenant['phone'] ?></td>
+                                        <td><?php echo $tenant['name'] ? $tenant['name'] : "N/A" ?></td>
+                                        <td>
+                                            <a href="<?php echo url_for("/admin/tenants/tenant.php?tenant_id") ?>=<?php echo $tenant['tenant_id'] ?>" class="btn btn-warning"><i class="bi bi-pen"></i></a>
+                                            <a href="actions/?action=delete&&target=tenant&&tenant_id=<?php echo $tenant['tenant_id'] ?>" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
@@ -111,32 +73,37 @@ include("../side_bar.php");
             </div>
         </div>
     </section>
-
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTenant">
-        Open modal
-    </button> -->
-
     <!-- The Modal -->
     <div class="modal fade" id="addTenant">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
-                </div>
+                    <form action="tenants/addTenants.php" method="post">
+                        <div class="form-group">
+                            <label for="names">Names</label>
+                            <input type="text" name="names" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_number">Id Number</label>
+                            <input type="text" name="id_number" id="id_number" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="apartment">Apartment</label>
+                            <select name="apartment" id="apartment" class="form-control">
+                                <?php foreach ($apartments as $apartment) { ?>
+                                    <option value="<?php echo $apartment['id'] ?>"><?php echo $apartment['apart_name'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <button type="submit" name="addTenant" class="btn btn-success">Add</button>
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </form>
                 </div>
-
             </div>
         </div>
     </div>

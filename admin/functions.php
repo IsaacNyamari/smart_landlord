@@ -1,16 +1,18 @@
 <?php
+define("PRIVATE_PATH", dirname(__FILE__));
+define("PROJECT_PATH", dirname(PRIVATE_PATH));
+define("PUBLIC_PATH", PROJECT_PATH . '/');
+
+$public_end = strpos($_SERVER['SCRIPT_NAME'], '/smart_landlord');
+$doc_root = substr($_SERVER['SCRIPT_NAME'], 0, $public_end);
+define("WWW_ROOT", $doc_root);
 function url_for($script)
 {
-    // Base URL for the project
-    $base_url = '/smart_landlord/admin/'; // Adjust this to your project's root URL if needed
 
-    // Ensure a leading slash and no double slashes
-    if ($script[0] !== '/') {
-        $script = __DIR__ . '/' . $script;
+    if ($script[0] != '/') {
+        $script = "/" . $script;
     }
-
-    // Return the complete URL for the CSS file
-    return $base_url . ltrim($script, '/');
+    return WWW_ROOT . $script;
 }
 
 
@@ -118,7 +120,7 @@ class Caretakers extends Database
             $caretaker = null;
             $sql = "UPDATE apartments SET caretaker = ? WHERE landlord = ?";
             $stmt = mysqli_prepare($this->connection, $sql);
-            mysqli_stmt_bind_param($stmt, "ss", $caretaker,$owner);
+            mysqli_stmt_bind_param($stmt, "ss", $caretaker, $owner);
             if (mysqli_stmt_execute($stmt)) {
                 header("Location: /admin/caretakers");
                 exit;
@@ -203,27 +205,39 @@ class Tenants extends Database
 {
     public $connection;
     use GenerateId;
-    public function getTenants()
+    public function getTenants($landlord_id)
     {
         $this->connection = $this->connect();
-        $sql =  "SELECT * FROM tenants";
+        $sql =  "SELECT * FROM tenants t LEFT JOIN apartments a on t.apartment=a.apart_id WHERE `landlord_id`=?";
         $stmt = mysqli_prepare($this->connection, $sql);
+        mysqli_stmt_bind_param($stmt, "s", $landlord_id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         return $result;
     }
-    public function addTenant($id_number = null, $names = null, $apartment = null, $landlord_id = null)
+    public function getTenant($tenant_id, $landlord_id)
+    {
+        $this->connection = $this->connect();
+        $sql =  "SELECT * FROM tenants t LEFT JOIN apartments a on t.apartment=a.apart_id WHERE t.tenant_id=? AND t.landlord_id=?";
+        $stmt = mysqli_prepare($this->connection, $sql);
+        mysqli_stmt_bind_param($stmt, "ss", $tenant_id, $landlord_id);
+        mysqli_stmt_execute($stmt);
+        $results = mysqli_stmt_get_result($stmt);
+        $result = mysqli_fetch_assoc($results);
+        return $result;
+    }
+    public function addTenant($id_number, $names, $phone, $apartment, $landlord_id)
     {
         try {
             $id = $this->generateId(25);
             $this->connection = $this->connect();
-            $sql =  "INSERT INTO `tenants`(`tenant_id`, `id_number`, `names`, `apartment`,`landlord_id`) 
-        VALUES (?,?,?,?,?)";
+            $sql =  "INSERT INTO `tenants`(`tenant_id`, `id_number`, `names`,`phone`, `apartment`,`landlord_id`) 
+        VALUES (?,?,?,?,?,?)";
             $stmt = mysqli_prepare($this->connection, $sql);
-            mysqli_stmt_bind_param($stmt, "sssss", $id, $id_number, $names, $apartment, $landlord_id);
+            mysqli_stmt_bind_param($stmt, "ssssss", $id, $id_number, $names, $phone, $apartment, $landlord_id);
             if (mysqli_stmt_execute($stmt)) {
-                $header = header("Location:tenants.php");
-                return $header;
+                header("Location: /admin/tenants");
+                exit;
             } else {
                 if (mysqli_errno($this->connection) == 1062) {
                     $status = "Users exists with this id!";
@@ -234,16 +248,16 @@ class Tenants extends Database
             throw $err;
         }
     }
-    public function deleteTenant($id = null)
+    public function deleteTenant($tenant_id, $landlord_id)
     {
         try {
             $this->connection = $this->connect();
-            $sql =  "DELETE FROM `tenants` WHERE tenant_id = ?";
+            $sql =  "DELETE FROM `tenants` WHERE tenant_id = ? AND landlord_id=?";
             $stmt = mysqli_prepare($this->connection, $sql);
-            mysqli_stmt_bind_param($stmt, "s", $id);
+            mysqli_stmt_bind_param($stmt, "ss", $tenant_id, $landlord_id);
             if (mysqli_stmt_execute($stmt)) {
-                $status = "success";
-                return $status;
+                header("Location: /admin/tenants");
+                exit;
             }
         } catch (\Error $err) {
             throw $err;
@@ -257,8 +271,8 @@ class Tenants extends Database
             $stmt = mysqli_prepare($this->connection, $sql);
             mysqli_stmt_bind_param($stmt, "s", $names, $apartment, $id_number);
             if (mysqli_stmt_execute($stmt)) {
-                $status = "success";
-                return $status;
+                header("Location: /admin/tenants");
+                exit;
             }
         } catch (\Error $err) {
             throw $err;

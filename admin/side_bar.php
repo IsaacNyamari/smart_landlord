@@ -1,4 +1,3 @@
-
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -12,17 +11,17 @@
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="tenants">
+                    <a href="<?php echo url_for('admin/tenants') ?>">
                         <i class="bi bi-circle"></i><span>Tenants</span>
                     </a>
                 </li>
                 <li>
-                    <a href="caretakers">
+                    <a href="<?php echo url_for('admin/caretakers') ?>">
                         <i class="bi bi-circle"></i><span>Caretaker</span>
                     </a>
                 </li>
                 <li>
-                    <a href="apartments">
+                    <a href="<?php echo url_for('admin/apartments') ?>">
                         <i class="bi bi-circle"></i><span>Apartments</span>
                     </a>
                 </li>
@@ -32,13 +31,13 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.php">
+            <a class="nav-link collapsed" href="<?php echo url_for('admin/users-profile.php') ?>">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
         </li><!-- End Profile Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="logout.php">
+            <a class="nav-link collapsed" href="<?php echo url_for('admin/logout.php') ?>">
                 <i class="bi bi-box-arrow-in-right text-danger"></i>
                 <span>Log Out</span>
             </a>

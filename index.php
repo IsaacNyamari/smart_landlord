@@ -1,5 +1,5 @@
 <?php
-include("protect.php");
+// include("protect.php");
 if (isset($_GET['status'])) {
     $status = $_GET['status'];
     if ($status == "success") {

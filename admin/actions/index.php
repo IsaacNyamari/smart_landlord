@@ -3,6 +3,7 @@ require_once("../functions.php");
 session_start();
 $deleteApart = new Apartments;
 $deleteCaretaker = new Caretakers;
+$deleteTenant = new Tenants;
 if (isset($_GET['action'])) {
     $action = isset($_GET['action']) ? $_GET['action'] : null;
     $apart_id = isset($_GET['apart_id']) ? $_GET['apart_id'] : null;
@@ -18,6 +19,9 @@ if (isset($_GET['action'])) {
                     break;
                 case 'caretaker':
                     $deleteCaretaker->deleteCaretaker($caretaker_id, $owner);
+                    break;
+                case 'tenant':
+                    $deleteTenant->deleteTenant($tenant_id, $owner);
                     break;
 
                 default:

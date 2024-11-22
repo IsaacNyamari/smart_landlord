@@ -1,8 +1,8 @@
 <?php
-define("PRIVATE_PATH", dirname(__FILE__));
-define("PROJECT_PATH", dirname(PRIVATE_PATH));
-define("MESSAGES", PRIVATE_PATH . "/messages");
-define("REPORTS", PRIVATE_PATH . "/reports");
-define("TENANTS", PRIVATE_PATH . "/tenants");
-define("CARETAKERS", PRIVATE_PATH . "/caretakers");
-define("APARTMENTS", PRIVATE_PATH . "/apartments");
+// define("PRIVATE_PATH", dirname(__FILE__));
+// define("PROJECT_PATH", dirname(PRIVATE_PATH));
+// define("PUBLIC_PATH", PROJECT_PATH . '/');
+
+// $public_end = strpos($_SERVER['SCRIPT_NAME'], '/') + 1;
+// $doc_root = substr($_SERVER['SCRIPT_NAME'],0,$public_end);
+// define("WWW_ROOT",$doc_root);
