@@ -19,7 +19,7 @@ include("../header/header.php");
     <?php include("../nav/nav.php") ?>
     <div id="pricing" class="section">
         <div class="text-wrap _6vw-margin">
-            <h2 class="h3-title center _2vw-margin">Pricing</h2>
+            <h2 class="cf-colourful-text h3-title center _2vw-margin">Pricing</h2>
             <p class="large-paragraph center">Note: All plans have all the features. The only difference is the number of units.</p>
         </div>
         <div class="w-layout-grid grid-3">
@@ -33,7 +33,7 @@ include("../header/header.php");
                     <div class="check-wrapper"><img src="https://cdn.prod.website-files.com/61eca48c11315a1923c76b16/61eca48c11315ab9e4c76c95_Green_Check.svg" alt="list item start." class="medium-icon">
                         <p class="medium-paragraph">0-10 units</p>
                     </div>
-                </div><a href="https://app.bomahut.com/register" id="try_free_basic" data-event-category="Website Leads" data-event-label="Free Trial - Landing Page - Pricing" target="_blank" class="button black ga-event w-inline-block">
+                </div><a href="#" id="try_free_basic" data-event-category="Website Leads" data-event-label="Free Trial - Landing Page - Pricing" target="_blank" class="button black ga-event w-inline-block">
                     <div class="button-arrow-wrap">
                         <div class="button-arrow-circle"><img src="https://cdn.prod.website-files.com/61eca48c11315a1923c76b16/61eca48c11315a1feac76c00_arrow_forward_black_24dp.svg" loading="lazy" alt="next" class="button-arrow"></div>
                     </div>
@@ -84,7 +84,7 @@ include("../header/header.php");
                     <div class="check-wrapper"><img src="https://cdn.prod.website-files.com/61eca48c11315a1923c76b16/61eca48c11315ab9e4c76c95_Green_Check.svg" alt="list item start." class="medium-icon">
                         <p class="medium-paragraph">51-100 units</p>
                     </div>
-                </div><a href="https://app.bomahut.com/register" id="start_now_premium" target="_blank" class="button black ga-event w-inline-block">
+                </div><a href="#" id="start_now_premium" target="_blank" class="button black ga-event w-inline-block">
                     <div class="button-arrow-wrap">
                         <div class="button-arrow-circle"><img src="https://cdn.prod.website-files.com/61eca48c11315a1923c76b16/61eca48c11315a1feac76c00_arrow_forward_black_24dp.svg" loading="lazy" alt="next" class="button-arrow"></div>
                     </div>

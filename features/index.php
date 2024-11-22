@@ -20,7 +20,7 @@ require_once("../header/header.php");
     <?php include("../nav/nav.php") ?>
 
     <section class="gallery-scroll">
-        <h2 class="centered-heading _2vw-margin">Features</h2>
+        <h2 class="cf-colourful-text centered-heading _2vw-margin">Features</h2>
         <div class="container-2">
             <div class="gallery-wrapper">
                 <div id="w-node-_7482977e-1f3b-0585-db78-9ed93d5231f0-3d5231eb" class="gallery-sticky"><a href="#rent-utility-fee-collection" class="gallery-link">Rent Utility/Fee Collection<br></a><a href="#invoice-receipt-management" class="gallery-link">Invoice/Receipt Management<br></a><a href="#updated-tenant-records" class="gallery-link">Updated Tenant Records<br></a><a href="#sms-services" data-w-id="7482977e-1f3b-0585-db78-9ed93d5231fa" class="gallery-link">SMS services<br></a><a href="#automate-tasks" class="gallery-link">Automate Management Tasks<br></a><a href="#reports-and-statements" class="gallery-link w--current">Reports and Statements<br></a></div>

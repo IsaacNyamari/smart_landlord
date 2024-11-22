@@ -21,6 +21,9 @@
                 <a class="nav-link" href="../pricing">Pricing</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="../contact">Contact Us</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../faqs">FAQs</a>
             </li>
 
